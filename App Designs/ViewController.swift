@@ -9,6 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    lazy var movieController = TheatreViewController.init(nibName: nil, bundle: nil)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -17,8 +19,15 @@ class ViewController: UIViewController {
         customBackButton.tintColor = .white
         navigationItem.backBarButtonItem = customBackButton
         
+        DispatchQueue.main.asyncAfter(wallDeadline: .now() + .seconds(2)) {
+            self.moveTo()
+        }
+        
     }
 
+    func moveTo() {
+        self.navigationController?.pushViewController(movieController, animated: true)
+    }
 
 }
 
